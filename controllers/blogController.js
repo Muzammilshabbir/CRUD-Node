@@ -30,7 +30,6 @@ const blogs = async (req, res) => {
 
     try {
         const blogs = await Blog.find()
-
         res.status(200).send(blogs)
     }
     catch (err) {
@@ -39,9 +38,12 @@ const blogs = async (req, res) => {
 }
 
 const getBlog = async (req, res) => {
-
-    const blog = await Blog.findById(req.params.id);
-    res.status(200).send(blog)
+    try {
+        const blog = await Blog.findById(req.params.id);
+        res.status(200).send(blog)
+    }catch (err) {
+        console.error(err)
+    }
 }
 const updateBlog = async (req, res) => {
     try {

@@ -15,4 +15,8 @@ router.get('/get-blog/:id', blogController.getBlog)
 router.put('/update-blog/:id', blogController.updateBlog)
 router.delete('/delete-blog/:id', blogController.deleteBlog)
 
+
+router.use((req,res) => {
+    res.status(404).render('404',{title:'404'});
+})
 module.exports = router;
