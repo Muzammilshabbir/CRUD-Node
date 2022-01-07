@@ -1,3 +1,4 @@
+const config = require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -5,10 +6,10 @@ const blogRoutes = require('./routes/blog')
 const app = express();
 app.use(express.urlencoded({extended: true}));
 
-const dbUri = 'mongodb+srv://root:root@cluster0.4l5tq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const dbUri = config.parsed.DBURI
 
 mongoose.connect(dbUri)
-    .then((result) => app.listen(3000))
+    .then((result) => app.listen(config.parsed.PORT || 3000))
     .catch((err) => console.log(err))
 
 const con = mongoose.connection
